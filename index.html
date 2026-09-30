@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>사과데이 마음잇기 카드</title>
+  <style>
+    :root {
+      --bg1: #fff7ed;
+      --bg2: #fef3c7;
+      --card: #ffffff;
+      --apple: #ef4444;
+      --apple-dark: #b91c1c;
+      --orange: #f97316;
+      --yellow: #facc15;
+      --green: #16a34a;
+      --blue: #60a5fa;
+      --border: #fdba74;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, #fee2e2 0, transparent 26%),
+        radial-gradient(circle at top right, #fef08a 0, transparent 24%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+      word-break: keep-all;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.96);
+      border: 3px solid #fed7aa;
+      border-radius: 30px;
+      padding: 24px;
+      margin-bottom: 18px;
+    }
+
+    .top-area {
+      display: grid;
+      grid-template-columns: 1fr 140px;
+      gap: 16px;
+      align-items: center;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      color: var(--apple-dark);
+      font-size: 32px;
+      line-height: 1.25;
+    }
+
+    h2 {
+      font-size: 21px;
+      margin: 0 0 12px;
+      color: var(--apple-dark);
+    }
+
+    .subtitle {
+      margin: 0;
+      color: #4b5563;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .apple-svg {
+      width: 130px;
+      height: 130px;
+      justify-self: center;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: var(--radius);
+      padding: 18px;
+      margin-bottom: 16px;
+      border: 2px solid #fed7aa;
+    }
+
+    .note {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: #7c2d12;
+      border-radius: 16px;
+      padding: 14px;
+      line-height: 1.6;
+      font-size: 15px;
+      margin-top: 14px;
+    }
+
+    label {
+      display: block;
+      font-weight: 900;
+      margin-bottom: 8px;
+      color: var(--apple-dark);
+      font-size: 16px;
+    }
+
+    .guide {
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0 0 8px;
+      line-height: 1.5;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 2px solid #fdba74;
+      border-radius: 16px;
+      padding: 13px;
+      font-size: 16px;
+      line-height: 1.5;
+      font-family: inherit;
+      background: #fff;
+      color: var(--text);
+    }
+
+    textarea {
+      min-height: 88px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: 4px solid #fed7aa;
+      border-color: var(--orange);
+    }
+
+    .input-block {
+      background: #fff7ed;
+      border: 1px dashed #fb923c;
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 18px 0;
+    }
+
+    button {
+      border: none;
+      border-radius: 16px;
+      padding: 14px 18px;
+      font-size: 16px;
+      font-weight: 900;
+      cursor: pointer;
+      font-family: inherit;
+      min-height: 52px;
+    }
+
+    .primary {
+      background: var(--apple);
+      color: white;
+    }
+
+    .secondary {
+      background: #ffedd5;
+      color: #9a3412;
+      border: 2px solid #fdba74;
+    }
+
+    .green-btn {
+      background: #dcfce7;
+      color: #166534;
+      border: 2px solid #86efac;
+    }
+
+    .ghost {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 2px solid #bfdbfe;
+    }
+
+    .card {
+      background:
+        radial-gradient(circle at top left, #fee2e2 0, transparent 28%),
+        radial-gradient(circle at bottom right, #dcfce7 0, transparent 25%),
+        #ffffff;
+      border: 4px solid #fb7185;
+      border-radius: 30px;
+      padding: 24px;
+      margin-top: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      right: -30px;
+      top: -30px;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: #fecdd3;
+      opacity: 0.55;
+    }
+
+    .card-title {
+      font-weight: 900;
+      color: var(--apple-dark);
+      margin-bottom: 14px;
+      font-size: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mini-apple {
+      width: 58px;
+      height: 58px;
+      flex: 0 0 auto;
+    }
+
+    #cardPreviewText {
+      white-space: pre-line;
+      position: relative;
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.82);
+      border-radius: 18px;
+      padding: 14px;
+      line-height: 1.85;
+      font-size: 18px;
+      min-height: 180px;
+    }
+
+    #editText {
+      min-height: 220px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .tips {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1e3a8a;
+      border-radius: 16px;
+      padding: 14px;
+      line-height: 1.6;
+      font-size: 15px;
+      margin-top: 12px;
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      .container > header,
+      .container > .section:not(#previewSection),
+      .buttons {
+        display: none !important;
+      }
+
+      #previewSection {
+        border: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .card {
+        border-width: 3px;
+        margin-top: 0;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .top-area {
+        grid-template-columns: 1fr;
+      }
+
+      .row {
+        grid-template-columns: 1fr;
+      }
+
+      .container {
+        padding: 14px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      button {
+        width: 100%;
+      }
+
+      #cardPreviewText {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <div class="top-area">
+        <div>
+          <h1>사과데이 마음잇기 카드</h1>
+          <p class="subtitle">
+            나 전달법을 활용해 상대를 존중하는 사과문을 만들어 봅시다.
+            내 마음을 솔직하게 전하고, 상대의 마음도 함께 생각해 봅니다.
+          </p>
+        </div>
+
+        <svg class="apple-svg" viewBox="0 0 200 200" aria-label="사과 그림" role="img">
+          <ellipse cx="100" cy="112" rx="62" ry="58" fill="#ef4444"></ellipse>
+          <ellipse cx="76" cy="104" rx="38" ry="48" fill="#f87171"></ellipse>
+          <ellipse cx="121" cy="104" rx="38" ry="48" fill="#dc2626"></ellipse>
+          <path d="M100 55 C95 35, 110 20, 128 21" fill="none" stroke="#7c2d12" stroke-width="10" stroke-linecap="round"></path>
+          <path d="M125 37 C146 24, 164 33, 168 49 C147 54, 134 50, 125 37Z" fill="#22c55e"></path>
+          <ellipse cx="74" cy="86" rx="12" ry="18" fill="#fecaca" opacity="0.9"></ellipse>
+          <path d="M62 143 C86 165, 122 168, 148 143" fill="none" stroke="#991b1b" stroke-width="6" stroke-linecap="round"></path>
+        </svg>
+      </div>
+
+      <div class="note">
+        <strong>안내</strong><br />
+        카드를 전할 상대가 있다면 받는 사람을 적어도 됩니다.
+        모두가 보는 공간에 올릴 때에는 선생님의 안내에 따라 이름 공개 여부를 정합니다.
+      </div>
+    </header>
+
+    <section class="section">
+      <h2>1. 누구에게 전하나요?</h2>
+      <div class="row">
+        <div>
+          <label for="receiver">받는 사람</label>
+          <p class="guide">예: 김○○, 1번 친구, 같은 모둠 친구 등</p>
+          <input id="receiver" type="text" placeholder="받는 사람을 적어 보세요." />
+        </div>
+        <div>
+          <label for="sender">보내는 사람</label>
+          <p class="guide">예: 내 이름, 학번, 익명 등</p>
+          <input id="sender" type="text" placeholder="보내는 사람을 적어 보세요." />
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 14px;">
+        <div>
+          <label for="target">말투 선택</label>
+          <select id="target">
+            <option value="friend">친구에게</option>
+            <option value="classmate">학급 친구에게</option>
+            <option value="teacher">선생님께</option>
+            <option value="family">가족에게</option>
+          </select>
+        </div>
+        <div>
+          <label for="theme">카드 색깔</label>
+          <select id="theme" onchange="changeTheme()">
+            <option value="apple">사과 빨강</option>
+            <option value="sunny">따뜻한 노랑</option>
+            <option value="mint">편안한 초록</option>
+            <option value="sky">차분한 파랑</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>2. 나 전달법으로 내용 정리하기</h2>
+
+      <div class="input-block">
+        <label for="situation">① 어떤 일에 대해 사과하고 싶나요?</label>
+        <p class="guide">예: 내가 네 말을 끊었다. / 장난으로 한 말 때문에 네가 기분 나빠했다.</p>
+        <textarea id="situation" placeholder="사과할 상황을 써 보세요."></textarea>
+      </div>
+
+      <div class="input-block">
+        <label for="myFeeling">② 그때 나는 어떤 마음이었나요?</label>
+        <p class="guide">예: 급한 마음이었다. / 장난이라고 생각했다. / 부끄럽고 당황했다.</p>
+        <textarea id="myFeeling" placeholder="그때 나의 감정을 써 보세요."></textarea>
+      </div>
+
+      <div class="input-block">
+        <label for="otherFeeling">③ 상대방은 어떤 마음이었을까요?</label>
+        <p class="guide">예: 속상했을 것 같다. / 무시당한다고 느꼈을 것 같다. / 창피했을 것 같다.</p>
+        <textarea id="otherFeeling" placeholder="상대방의 감정을 상상해서 써 보세요."></textarea>
+      </div>
+
+      <div class="input-block">
+        <label for="responsibility">④ 내가 인정해야 할 행동은 무엇인가요?</label>
+        <p class="guide">예: 네 말을 끝까지 듣지 않았다. / 네 기분을 생각하지 않고 말했다.</p>
+        <textarea id="responsibility" placeholder="내가 책임지고 인정해야 할 행동을 써 보세요."></textarea>
+      </div>
+
+      <div class="input-block">
+        <label for="promise">⑤ 앞으로 어떻게 바꾸고 싶나요?</label>
+        <p class="guide">예: 말하기 전에 상대 기분을 먼저 생각하겠다. / 네 말을 끝까지 듣겠다.</p>
+        <textarea id="promise" placeholder="앞으로의 다짐을 써 보세요."></textarea>
+      </div>
+    </section>
+
+    <div class="buttons">
+      <button class="primary" type="button" onclick="makeCard()">사과 카드 만들기</button>
+      <button class="green-btn" type="button" onclick="applyEditedText()">수정 반영하기</button>
+      <button class="secondary" type="button" onclick="copyCard()">Padlet 붙여넣기용 복사</button>
+      <button class="ghost" type="button" onclick="printOnlyCard()">카드만 인쇄 / PDF 저장</button>
+      <button class="secondary" type="button" onclick="resetAll()">다시 쓰기</button>
+    </div>
+
+    <section class="section">
+      <h2>3. 내 말투로 다듬기</h2>
+      <p class="guide">카드를 만든 뒤 아래 글상자에서 문장을 직접 고치면 됩니다.</p>
+      <textarea id="editText" placeholder="사과 카드를 만들면 이곳에 문장이 나타납니다."></textarea>
+      <div class="tips">
+        더 자연스럽게 바꾸고 싶다면 문장 순서를 바꾸거나, 내 말투에 맞게 표현을 바꿔도 됩니다.
+      </div>
+    </section>
+
+    <section id="previewSection" class="section">
+      <h2>4. 카드 미리보기</h2>
+      <section id="result" class="card hidden">
+        <div class="card-header">
+          <div class="card-title">나의 사과데이 카드</div>
+          <svg class="mini-apple" viewBox="0 0 200 200" aria-hidden="true">
+            <ellipse cx="100" cy="112" rx="62" ry="58" fill="#ef4444"></ellipse>
+            <ellipse cx="76" cy="104" rx="38" ry="48" fill="#f87171"></ellipse>
+            <ellipse cx="121" cy="104" rx="38" ry="48" fill="#dc2626"></ellipse>
+            <path d="M100 55 C95 35, 110 20, 128 21" fill="none" stroke="#7c2d12" stroke-width="10" stroke-linecap="round"></path>
+            <path d="M125 37 C146 24, 164 33, 168 49 C147 54, 134 50, 125 37Z" fill="#22c55e"></path>
+          </svg>
+        </div>
+        <div id="cardPreviewText"></div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    function getValue(id) {
+      return document.getElementById(id).value.trim();
+    }
+
+    function cleanSentence(text) {
+      var cleaned = text.trim();
+      while (
+        cleaned.endsWith('.') ||
+        cleaned.endsWith('!') ||
+        cleaned.endsWith('?') ||
+        cleaned.endsWith('。')
+      ) {
+        cleaned = cleaned.slice(0, -1).trim();
+      }
+      return cleaned;
+    }
+
+    function targetEnding(target) {
+      if (target === 'teacher') {
+        return '앞으로는 더 신중하게 말하고 행동하겠습니다.';
+      }
+      if (target === 'family') {
+        return '앞으로는 내 마음만 앞세우지 않고 더 차분하게 이야기해 볼게요.';
+      }
+      if (target === 'classmate') {
+        return '앞으로는 같은 반 친구로서 네 마음을 더 존중하며 말할게.';
+      }
+      return '앞으로는 네 마음을 더 생각하면서 말하고 행동할게.';
+    }
+
+    function validateInputs() {
+      var fields = [
+        ['receiver', '받는 사람'],
+        ['sender', '보내는 사람'],
+        ['situation', '사과할 상황'],
+        ['myFeeling', '그때 나의 감정'],
+        ['otherFeeling', '상대방의 감정'],
+        ['responsibility', '내가 인정할 행동'],
+        ['promise', '앞으로의 다짐']
+      ];
+
+      for (var i = 0; i < fields.length; i++) {
+        var id = fields[i][0];
+        var name = fields[i][1];
+        if (!getValue(id)) {
+          alert(name + '을/를 입력해 주세요.');
+          document.getElementById(id).focus();
+          return false;
+        }
+      }
+      return true;
+    }
+
+    function makeCard() {
+      if (!validateInputs()) {
+        return;
+      }
+
+      var receiver = cleanSentence(getValue('receiver'));
+      var sender = cleanSentence(getValue('sender'));
+      var target = getValue('target');
+      var ending = targetEnding(target);
+      var situation = cleanSentence(getValue('situation'));
+      var myFeeling = cleanSentence(getValue('myFeeling'));
+      var otherFeeling = cleanSentence(getValue('otherFeeling'));
+      var responsibility = cleanSentence(getValue('responsibility'));
+      var promise = cleanSentence(getValue('promise'));
+
+      var cardText =
+        receiver + '에게\n\n' +
+        '내가 ' + situation + ' 때, 너는 ' + otherFeeling + '.\n' +
+        '나는 그때 ' + myFeeling + '.\n\n' +
+        '다만 지금 생각해 보니, ' + responsibility + '는 점은 내가 인정해야 해.\n' +
+        '네 마음을 더 빨리 생각하지 못해서 미안해.\n\n' +
+        '앞으로는 ' + promise + '.\n' +
+        ending + '\n\n' +
+        '- ' + sender + ' -';
+
+      document.getElementById('editText').value = cardText;
+      document.getElementById('cardPreviewText').innerText = cardText;
+      document.getElementById('result').classList.remove('hidden');
+      changeTheme();
+      document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function applyEditedText() {
+      var text = document.getElementById('editText').value.trim();
+      if (!text) {
+        alert('먼저 사과 카드를 만들거나 수정 내용을 입력해 주세요.');
+        return;
+      }
+      document.getElementById('cardPreviewText').innerText = text;
+      document.getElementById('result').classList.remove('hidden');
+      changeTheme();
+      document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function copyCard() {
+      var text = document.getElementById('cardPreviewText').innerText.trim();
+      if (!text) {
+        alert('먼저 사과 카드를 만들어 주세요.');
+        return;
+      }
+
+      var padletText = '[사과데이 마음잇기 카드]\n\n' + text;
+
+      navigator.clipboard.writeText(padletText).then(function() {
+        alert('사과 카드가 복사되었습니다. Padlet 게시글에 붙여넣을 수 있습니다.');
+      }).catch(function() {
+        alert('자동 복사가 되지 않았습니다. 카드 내용을 길게 눌러 직접 복사해 주세요.');
+      });
+    }
+
+    function printOnlyCard() {
+      var text = document.getElementById('cardPreviewText').innerText.trim();
+      if (!text) {
+        alert('먼저 사과 카드를 만들어 주세요.');
+        return;
+      }
+      window.print();
+    }
+
+    function resetAll() {
+      var ok = confirm('입력한 내용을 모두 지울까요?');
+      if (!ok) {
+        return;
+      }
+
+      var ids = ['receiver', 'sender', 'situation', 'myFeeling', 'otherFeeling', 'responsibility', 'promise', 'editText'];
+      for (var i = 0; i < ids.length; i++) {
+        document.getElementById(ids[i]).value = '';
+      }
+
+      document.getElementById('cardPreviewText').innerText = '';
+      document.getElementById('result').classList.add('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function changeTheme() {
+      var theme = getValue('theme');
+      var card = document.getElementById('result');
+      if (!card) {
+        return;
+      }
+
+      if (theme === 'sunny') {
+        card.style.borderColor = '#facc15';
+        card.style.background = 'radial-gradient(circle at top left, #fef9c3 0, transparent 28%), radial-gradient(circle at bottom right, #fed7aa 0, transparent 25%), #ffffff';
+      } else if (theme === 'mint') {
+        card.style.borderColor = '#86efac';
+        card.style.background = 'radial-gradient(circle at top left, #dcfce7 0, transparent 28%), radial-gradient(circle at bottom right, #bbf7d0 0, transparent 25%), #ffffff';
+      } else if (theme === 'sky') {
+        card.style.borderColor = '#93c5fd';
+        card.style.background = 'radial-gradient(circle at top left, #dbeafe 0, transparent 28%), radial-gradient(circle at bottom right, #e0f2fe 0, transparent 25%), #ffffff';
+      } else {
+        card.style.borderColor = '#fb7185';
+        card.style.background = 'radial-gradient(circle at top left, #fee2e2 0, transparent 28%), radial-gradient(circle at bottom right, #dcfce7 0, transparent 25%), #ffffff';
+      }
+    }
+  </script>
+</body>
+</html>

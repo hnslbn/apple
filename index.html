@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>사과데이 마음잇기 카드</title>
+
+  <style>
+    :root {
+      --bg: #fff7ed;
+      --card: #ffffff;
+      --main: #ea580c;
+      --main-dark: #9a3412;
+      --sub: #ffedd5;
+      --border: #fdba74;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --danger: #b91c1c;
+      --green: #166534;
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+      word-break: keep-all;
+    }
+
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      color: var(--main-dark);
+      font-size: 30px;
+      line-height: 1.25;
+    }
+
+    h2 {
+      font-size: 21px;
+      margin: 0 0 12px;
+      color: var(--main-dark);
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      color: var(--main-dark);
+      font-size: 18px;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: #4b5563;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .section {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 18px;
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .notice {
+      background: #fff1f2;
+      border: 1px solid #fecdd3;
+      color: #7f1d1d;
+      border-radius: 14px;
+      padding: 14px;
+      line-height: 1.6;
+      font-size: 15px;
+      margin-top: 12px;
+    }
+
+    .info {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1e3a8a;
+      border-radius: 14px;
+      padding: 14px;
+      line-height: 1.6;
+      font-size: 15px;
+      margin-top: 12px;
+    }
+
+    label {
+      display: block;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: var(--main-dark);
+      font-size: 16px;
+    }
+
+    .guide {
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0 0 8px;
+      line-height: 1.5;
+    }
+
+    textarea,
+    select,
+    input {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      font-size: 16px;
+      line-height: 1.5;
+      resize: vertical;
+      font-family: inherit;
+      background: #fff;
+      color: var(--text);
+    }
+
+    textarea {
+      min-height: 78px;
+    }
+
+    textarea:focus,
+    select:focus,
+    input:focus {
+      outline: 3px solid #fed7aa;
+      border-color: var(--main);
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 18px 0;
+    }
+
+    button {
+      border: none;
+      border-radius: 12px;
+      padding: 13px 16px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: inherit;
+      min-height: 48px;
+    }
+
+    .primary {
+      background: var(--main);
+      color: white;
+    }
+
+    .secondary {
+      background: var(--sub);
+      color: var(--main-dark);
+      border: 1px solid var(--border);
+    }
+
+    .ghost {
+      background: #f3f4f6;
+      color: #374151;
+      border: 1px solid #d1d5db;
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    .card {
+      background: #ffffff;
+      border: 2px solid #fb923c;
+      border-radius: 24px;
+      padding: 24px;
+      margin-top: 16px;
+      line-height: 1.8;
+      font-size: 18px;
+    }
+
+    .card-title {
+      font-weight: 900;
+      color: var(--main-dark);
+      margin-bottom: 14px;
+      font-size: 23px;
+    }
+
+    #cardText {
+      white-space: pre-line;
+    }
+
+    .checklist {
+      background: #fff7ed;
+      border-radius: 14px;
+      padding: 14px;
+      line-height: 1.8;
+      font-size: 15px;
+      color: #444;
+      border: 1px dashed #fdba74;
+    }
+
+    .score-box {
+      background: #f9fafb;
+      border: 1px solid #d1d5db;
+      border-radius: 14px;
+      padding: 14px;
+      margin-top: 12px;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .score-good {
+      color: var(--green);
+      font-weight: 800;
+    }
+
+    .score-warn {
+      color: var(--danger);
+      font-weight: 800;
+    }
+
+    .small {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-top: 8px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 680px) {
+      .row {
+        grid-template-columns: 1fr;
+      }
+
+      .container {
+        padding: 14px;
+      }
+
+      header {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 25px;
+      }
+
+      .card {
+        font-size: 16px;
+        padding: 18px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <header>
+      <h1>사과데이 마음잇기 카드</h1>
+      <p class="subtitle">
+        나 전달법을 활용해 상대를 존중하는 사과문을 만들어 봅시다.
+        이 웹앱은 사과를 대신해 주는 도구가 아니라, 내 마음과 책임을 정리하도록 돕는 연습 도구입니다.
+      </p>
+
+      <div class="notice">
+        <strong>사용 전 약속</strong><br />
+        실제 친구 이름, 전화번호, 주소, 계정 아이디 같은 개인정보는 쓰지 않습니다.
+        마음이 불편하거나 심각한 갈등 상황이라면 혼자 해결하려 하지 말고 선생님과 먼저 상의합니다.
+      </div>
+    </header>
+
+    <section class="section">
+      <h2>1. 카드 설정</h2>
+
+      <div class="row">
+        <div>
+          <label for="target">누구에게 전하는 카드인가요?</label>
+          <select id="target">
+            <option value="friend">친구에게</option>
+            <option value="teacher">선생님께</option>
+            <option value="family">가족에게</option>
+            <option value="classmate">학급 친구에게</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="length">사과문의 길이</label>
+          <select id="length">
+            <option value="normal">보통</option>
+            <option value="short">짧게</option>
+            <option value="long">진심을 담아 길게</option>
+          </select>
+        </div>
+      </div>
+
+      <p class="small">
+        실제로 전달할지, 연습용으로만 사용할지는 스스로 선택할 수 있습니다.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>2. 나 전달법으로 내용 정리하기</h2>
+
+      <label for="situation">① 어떤 일에 대해 사과하고 싶나요?</label>
+      <p class="guide">예: 내가 네 말을 끊었다. / 장난으로 한 말 때문에 네가 기분 나빠했다.</p>
+      <textarea id="situation" placeholder="사과할 상황을 써 보세요."></textarea>
+
+      <br /><br />
+
+      <label for="myFeeling">② 그때 나는 어떤 마음이었나요?</label>
+      <p class="guide">예: 급한 마음이었다. / 장난이라고 생각했다. / 부끄럽고 당황했다.</p>
+      <textarea id="myFeeling" placeholder="그때 나의 감정을 써 보세요."></textarea>
+
+      <br /><br />
+
+      <label for="otherFeeling">③ 상대방은 어떤 마음이었을까요?</label>
+      <p class="guide">예: 속상했을 것 같다. / 무시당한다고 느꼈을 것 같다. / 창피했을 것 같다.</p>
+      <textarea id="otherFeeling" placeholder="상대방의 감정을 상상해서 써 보세요."></textarea>
+
+      <br /><br />
+
+      <label for="responsibility">④ 내가 인정해야 할 행동은 무엇인가요?</label>
+      <p class="guide">예: 네 말을 끝까지 듣지 않았다. / 네 기분을 생각하지 않고 말했다.</p>
+      <textarea id="responsibility" placeholder="내가 책임지고 인정해야 할 행동을 써 보세요."></textarea>
+
+      <br /><br />
+
+      <label for="promise">⑤ 앞으로 어떻게 바꾸고 싶나요?</label>
+      <p class="guide">예: 말하기 전에 상대 기분을 먼저 생각하겠다. / 네 말을 끝까지 듣겠다.</p>
+      <textarea id="promise" placeholder="앞으로의 다짐을 써 보세요."></textarea>
+    </section>
+
+    <div class="buttons">
+      <button class="primary" onclick="makeCard()">사과 카드 만들기</button>
+      <button class="secondary" onclick="makeMoreRespectful()">존중 표현으로 점검하기</button>
+      <button class="secondary" onclick="copyCard()">Padlet에 붙여넣기용 복사</button>
+      <button class="ghost" onclick="resetAll()">다시 쓰기</button>
+    </div>
+
+    <section class="section">
+      <h2>3. 사과문 점검 기준</h2>
+
+      <div class="checklist">
+        □ 상대를 탓하는 말이 들어가지 않았나요?<br />
+        □ 내 행동을 분명히 인정했나요?<br />
+        □ 상대의 감정을 짐작하고 존중했나요?<br />
+        □ 내 감정을 솔직히 말하되 변명으로 쓰지 않았나요?<br />
+        □ 앞으로의 실천을 구체적으로 썼나요?
+      </div>
+
+      <div id="scoreBox" class="score-box hidden"></div>
+
+      <div class="info">
+        <strong>나 전달법 구조</strong><br />
+        내가 ______ 했을 때, 너는 ______ 느꼈을 것 같아.<br />
+        나는 그때 ______ 마음이었지만, ______ 점은 내가 인정해.<br />
+        그래서 미안해. 앞으로는 ______ 할게.
+      </div>
+    </section>
+
+    <section id="result" class="card hidden">
+      <div class="card-title">나의 사과데이 카드</div>
+      <div id="cardText"></div>
+    </section>
+  </main>
+
+  <script>
+    function getValue(id) {
+      return document.getElementById(id).value.trim();
+    }
+
+    function setText(id, text) {
+      document.getElementById(id).innerText = text;
+    }
+
+    function showElement(id) {
+      document.getElementById(id).classList.remove("hidden");
+    }
+
+    function hideElement(id) {
+      document.getElementById(id).classList.add("hidden");
+    }
+
+    function targetGreeting(target) {
+      if (target === "teacher") {
+        return "선생님께.";
+      }
+
+      if (target === "family") {
+        return "가족에게.";
+      }
+
+      if (target === "classmate") {
+        return "학급 친구에게.";
+      }
+
+      return "친구에게.";
+    }
+
+    function targetEnding(target) {
+      if (target === "teacher") {
+        return "앞으로는 더 신중하게 말하고 행동하겠습니다.";
+      }
+
+      if (target === "family") {
+        return "앞으로는 내 마음만 앞세우지 않고 더 차분하게 이야기해 볼게요.";
+      }
+
+      if (target === "classmate") {
+        return "앞으로는 같은 반 친구로서 네 마음을 더 존중하며 말할게.";
+      }
+
+      return "앞으로는 네 마음을 더 생각하면서 말하고 행동할게.";
+    }
+
+    function validateInputs() {
+      const fields = [
+        { id: "situation", name: "사과할 상황" },
+        { id: "myFeeling", name: "그때 나의 감정" },
+        { id: "otherFeeling", name: "상대방의 감정" },
+        { id: "responsibility", name: "내가 인정할 행동" },
+        { id: "promise", name: "앞으로의 다짐" }
+      ];
+
+      for (const field of fields) {
+        if (!getValue(field.id)) {
+          alert(field.name + "을/를 입력해 주세요.");
+          document.getElementById(field.id).focus();
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    function makeCard() {
+      if (!validateInputs()) {
+        return;
+      }
+
+      const target = getValue("target");
+      const length = getValue("length");
+
+      const greeting = targetGreeting(target);
+      const ending = targetEnding(target);
+
+      const situation = cleanSentence(getValue("situation"));
+      const myFeeling = cleanSentence(getValue("myFeeling"));
+      const otherFeeling = cleanSentence(getValue("otherFeeling"));
+      const responsibility = cleanSentence(getValue("responsibility"));
+      const promise = cleanSentence(getValue("promise"));
+
+      let card = "";
+
+      if (length === "short") {
+        card =
+`${greeting}
+
+내가 ${situation} 때, 너는 ${otherFeeling}.
+나는 그때 ${myFeeling}지만, ${responsibility}는 점을 인정해.
+진심으로 미안해.
+앞으로는 ${promise}.`;
+      } else if (length === "long") {
+        card =
+`${greeting}
+
+내가 ${situation} 때, 너는 ${otherFeeling}.
+나는 그때 ${myFeeling}.
+
+하지만 지금 생각해 보니, ${responsibility}는 점에서 내가 조심하지 못했어.
+내 말이나 행동 때문에 네 마음이 불편했을 수 있다는 것을 알게 되었어.
+
+그래서 진심으로 미안해.
+앞으로는 ${promise}.
+${ending}`;
+      } else {
+        card =
+`${greeting}
+
+내가 ${situation} 때, 너는 ${otherFeeling}.
+나는 그때 ${myFeeling}지만, ${responsibility}는 점을 인정해.
+
+그래서 진심으로 미안해.
+앞으로는 ${promise}.`;
+      }
+
+      setText("cardText", card);
+      showElement("result");
+      checkRespectScore();
+      document.getElementById("result").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function cleanSentence(text) {
+      let cleaned = text.trim();
+
+      while (
+        cleaned.endsWith(".") ||
+        cleaned.endsWith("!") ||
+        cleaned.endsWith("?") ||
+        cleaned.endsWith("。")
+      ) {
+        cleaned = cleaned.slice(0, -1).trim();
+      }
+
+      return cleaned;
+    }
+
+    function makeMoreRespectful() {
+      const cardText = getValueFromCard();
+
+      if (!cardText) {
+        alert("먼저 사과 카드를 만들어 주세요.");
+        return;
+      }
+
+      let revised = cardText;
+
+      revised = revised.replaceAll("하지만", "다만");
+      revised = revised.replaceAll("진심으로 미안해.", "진심으로 미안해. 네 마음을 더 빨리 생각하지 못해서 미안해.");
+      revised = revised.replaceAll("인정해.", "인정해. 네 입장에서 생각해 보니 더 조심했어야 했어.");
+      revised = revised.replaceAll("인정해.\n", "인정해. 네 입장에서 생각해 보니 더 조심했어야 했어.\n");
+
+      setText("cardText", revised);
+      showElement("result");
+      checkRespectScore();
+
+      alert("표현을 조금 더 존중하는 방향으로 점검했습니다. 최종 문장은 스스로 다시 읽고 고쳐 주세요.");
+    }
+
+    function getValueFromCard() {
+      return document.getElementById("cardText").innerText.trim();
+    }
+
+    function checkRespectScore() {
+      const card = getValueFromCard();
+
+      if (!card) {
+        hideElement("scoreBox");
+        return;
+      }
+
+      const checks = [
+        {
+          label: "상대 감정 표현",
+          ok: card.includes("느꼈을 것 같")
+        },
+        {
+          label: "내 행동 인정",
+          ok: card.includes("인정")
+        },
+        {
+          label: "사과 표현",
+          ok: card.includes("미안")
+        },
+        {
+          label: "앞으로의 다짐",
+          ok: card.includes("앞으로")
+        },
+        {
+          label: "존중 표현",
+          ok: !card.includes("너도") && !card.includes("네가 먼저") && !card.includes("어쩔 수 없")
+        }
+      ];
+
+      const okCount = checks.filter(function(item) {
+        return item.ok;
+      }).length;
+
+      let result = "<strong>사과문 점검 결과</strong><br />";
+
+      checks.forEach(function(item) {
+        result += item.ok ? "✓ " + item.label + "<br />" : "△ " + item.label + "을/를 더 보완해 보세요.<br />";
+      });
+
+      if (okCount >= 4) {
+        result += '<br /><span class="score-good">좋습니다. 존중하는 사과문의 요소가 대부분 들어 있습니다.</span>';
+      } else {
+        result += '<br /><span class="score-warn">조금 더 다듬어 보세요. 특히 상대 감정과 내 책임이 잘 드러나는지 확인해 보세요.</span>';
+      }
+
+      document.getElementById("scoreBox").innerHTML = result;
+      showElement("scoreBox");
+    }
+
+    function copyCard() {
+      const cardText = getValueFromCard();
+
+      if (!cardText) {
+        alert("복사할 사과 카드가 없습니다.");
+        return;
+      }
+
+      const padletText =
+`[사과데이 마음잇기 카드]
+
+${cardText}
+
+---
+이 카드는 나 전달법을 활용해 작성했습니다.`;
+
+      navigator.clipboard.writeText(padletText).then(function() {
+        alert("사과 카드가 복사되었습니다. Padlet 게시글에 붙여넣을 수 있습니다.");
+      }).catch(function() {
